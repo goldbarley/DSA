@@ -32,7 +32,7 @@ public class InsertionSort
         System.out.printf("Time of execution: %.4f seconds", (double) (endTime - startTime) / 1_000_000_000.0);
     }
 
-    private static void insertionSort(int[] array)
+    protected static void insertionSort(int[] array)
     {
         int size = array.length;
         

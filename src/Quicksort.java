@@ -29,10 +29,10 @@ public class Quicksort
 
         long endTime = System.nanoTime();
 
-        System.out.printf("Time of execution: %.4f seconds", (double) (endTime - startTime) / 1_000_000_000.0);
+        System.out.printf("\nTime of execution: %.4f seconds", (double) (endTime - startTime) / 1_000_000_000.0);
     }
 
-    private static void quicksort(int[] array)
+    protected static void quicksort(int[] array)
     {
         quicksort(array, 0, array.length - 1);
     }

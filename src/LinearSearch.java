@@ -22,7 +22,7 @@ public class LinearSearch
         System.out.printf("\nTime of execution: %.4f seconds", (double) (endTime - startTime) / 1_000_000_000.0);
     }
 
-    private static int linearSearch(int targetElement, int[] array)
+    protected static int linearSearch(int targetElement, int[] array)
     {   
         int size = array.length;
         int targetIndex = 0;

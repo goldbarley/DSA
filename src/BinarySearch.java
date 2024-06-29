@@ -26,7 +26,7 @@ public class BinarySearch
         System.out.printf("\nTime of execution: %.4f seconds", (double) (endTime - startTime) / 1_000_000_000.0);
     }    
 
-    private static int binarySearch(int targetElement, int[] array)
+    protected static int binarySearch(int targetElement, int[] array)
     {
         int lowIndex = 0, highIndex = array.length - 1;
 

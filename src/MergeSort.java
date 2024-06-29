@@ -33,7 +33,7 @@ public class MergeSort
         System.out.printf("Time of execution: %.4f", (double) (endTime - startTime) / 1_000_000_000.0);
     }
 
-    private static void mergeSort(int[] array)
+    protected static void mergeSort(int[] array)
     {
         int size = array.length;
 
