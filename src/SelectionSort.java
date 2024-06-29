@@ -1,10 +1,13 @@
 import java.util.Random;
+import java.util.Arrays;
 
 public class SelectionSort 
 {
     public static void main(String[] args) 
     {
-        printNotes();
+        long startTime = System.nanoTime();
+
+        notes.selectionsort.printNotes();
 
         Random r = new Random();
         
@@ -17,16 +20,22 @@ public class SelectionSort
         System.out.println("Size of the array: " + size + "\n");
 
         System.out.println("Before sorting:");
-        System.out.println(java.util.Arrays.toString(array));
+        System.out.println(Arrays.toString(array));
 
-        selectionSort(size, array);
+        selectionSort(array);
 
         System.out.println("\nAfter sorting:");
-        System.out.println(java.util.Arrays.toString(array));
+        System.out.println(Arrays.toString(array));
+
+        long endTime = System.nanoTime();
+
+        System.out.printf("Time of execution: %.4f seconds", (double) (endTime - startTime) / 1_000_000_000.0);
     }    
 
-    private static void selectionSort(int size, int[] array)
+    private static void selectionSort(int[] array)
     {
+        int size = array.length;
+
         for (int i = 0; i < size - 1; i++)
         {
             int minIndex = i;
@@ -45,15 +54,5 @@ public class SelectionSort
                 array[i] = tmp;
             }
         }
-    }
-
-    private static void printNotes()
-    {
-        System.out.println("Selection sort:");
-        System.out.println("Upper-bound time complexity: O(n^2)");
-        System.out.println("Lower-bound time complexity: Omega(n^2)");
-        System.out.println("Space complexity: O(1)");
-        System.out.println("Average time complexity: O(n^2)");
-        System.out.println("------------------------------------\n");
     }
 }

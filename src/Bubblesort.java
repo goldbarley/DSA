@@ -1,10 +1,13 @@
 import java.util.Random;
+import java.util.Arrays;
 
 public class Bubblesort 
 {
     public static void main(String[] args) 
     {
-        printNotes();
+        long startTime = System.nanoTime();
+
+        notes.bubblesort.printNotes();
 
         Random r = new Random();
         
@@ -17,16 +20,22 @@ public class Bubblesort
         System.out.println("Size of the array: " + size + "\n");
 
         System.out.println("Before sorting:");
-        System.out.println(java.util.Arrays.toString(array));
+        System.out.println(Arrays.toString(array));
 
-        bubblesort(size, array);
+        bubblesort(array);
 
         System.out.println("\nAfter sorting:");
-        System.out.println(java.util.Arrays.toString(array));
-    }    
+        System.out.println(Arrays.toString(array));
 
-    private static void bubblesort(int size, int[] array)
+        long endTime = System.nanoTime();
+
+        System.out.printf("Time of execution: %.4f seconds", (double) (endTime - startTime) / 1_000_000_000.0);
+    }   
+
+    private static void bubblesort(int[] array)
     {
+        int size = array.length;
+        
         for (int i = 0; i < size - 1; i++)
         {
             boolean swapped = false;
@@ -46,15 +55,5 @@ public class Bubblesort
                 break;
             }
         }
-    }
-
-    private static void printNotes()
-    {
-        System.out.println("Bubble sort:");
-        System.out.println("Upper-bound time complexity: O(n^2)");
-        System.out.println("Lower-bound time complexity: Omega(n)");
-        System.out.println("Space complexity: O(1)");
-        System.out.println("Average time complexity: O(n^2)");
-        System.out.println("----------------------------------\n");
     }
 }

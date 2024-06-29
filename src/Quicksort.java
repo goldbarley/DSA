@@ -1,10 +1,13 @@
 import java.util.Random;
+import java.util.Arrays;
 
 public class Quicksort 
 {
     public static void main(String[] args) 
     {
-        printNotes();
+        long startTime = System.nanoTime();
+
+        notes.quicksort.printNotes();
 
         Random r = new Random();
         
@@ -17,12 +20,21 @@ public class Quicksort
         System.out.println("Size of the array: " + size + "\n");
 
         System.out.println("Before sorting:");
-        System.out.println(java.util.Arrays.toString(array));
+        System.out.println(Arrays.toString(array));
 
-        quicksort(array, 0, size - 1);
+        quicksort(array);
 
         System.out.println("\nAfter sorting:");
-        System.out.println(java.util.Arrays.toString(array));
+        System.out.println(Arrays.toString(array));
+
+        long endTime = System.nanoTime();
+
+        System.out.printf("Time of execution: %.4f seconds", (double) (endTime - startTime) / 1_000_000_000.0);
+    }
+
+    private static void quicksort(int[] array)
+    {
+        quicksort(array, 0, array.length - 1);
     }
 
     private static void quicksort(int[] array, int start, int end)
@@ -59,15 +71,5 @@ public class Quicksort
         int tmp = array[index1];
         array[index1] = array[index2];
         array[index2] = tmp;
-    }
-
-    private static void printNotes()
-    {
-        System.out.println("Quicksort:");
-        System.out.println("Upper-bound time complexity: O(n^2)");
-        System.out.println("Lower-bound time complexity: Omega(n log n)");
-        System.out.println("Space complexity: O(log n)");
-        System.out.println("Average time complexity: O(n log n)");
-        System.out.println("--------------------------------------\n");
     }
 }

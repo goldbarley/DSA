@@ -1,10 +1,13 @@
 import java.util.Random;
+import java.util.Arrays;
 
 public class InsertionSort 
 {
     public static void main(String[] args)
     {
-        printNotes();
+        long startTime = System.nanoTime();
+
+        notes.insertionsort.printNotes();
 
         Random r = new Random();
         
@@ -17,16 +20,22 @@ public class InsertionSort
         System.out.println("Size of the array: " + size + "\n");
 
         System.out.println("Before sorting:");
-        System.out.println(java.util.Arrays.toString(array));
+        System.out.println(Arrays.toString(array));
 
-        insertionSort(size, array);
+        insertionSort(array);
 
         System.out.println("\nAfter sorting:");
-        System.out.println(java.util.Arrays.toString(array));
+        System.out.println(Arrays.toString(array));
+
+        long endTime = System.nanoTime();
+
+        System.out.printf("Time of execution: %.4f seconds", (double) (endTime - startTime) / 1_000_000_000.0);
     }
 
-    private static void insertionSort(int size, int[] array)
+    private static void insertionSort(int[] array)
     {
+        int size = array.length;
+        
         for (int i = 1; i < size; i++)
         {
             int currentElement = array[i];
@@ -41,15 +50,5 @@ public class InsertionSort
 
             array[j + 1] = currentElement;
         }
-    }
-
-    private static void printNotes()
-    {
-        System.out.println("Insertion sort:");
-        System.out.println("Upper-bound time complexity: O(n^2)");
-        System.out.println("Lower-bound time complexity: Omega(n)");
-        System.out.println("Space complexity: O(1)");
-        System.out.println("Average time complexity: O(n^2)");
-        System.out.println("------------------------------------\n");
     }
 }
