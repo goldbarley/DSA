@@ -9,6 +9,6 @@ public class mergesort
         System.out.println("Lower-bound time complexity: Omega(n log n)");
         System.out.println("Space complexity: O(n)");
         System.out.println("Average time complexity: O(n log n)");
-        System.out.println("----------------------------------\n");
+        System.out.println("--------------------------------------\n");
     }    
 }

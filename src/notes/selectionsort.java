@@ -9,6 +9,6 @@ public class selectionsort
         System.out.println("Lower-bound time complexity: Omega(n^2)");
         System.out.println("Space complexity: O(1)");
         System.out.println("Average time complexity: O(n^2)");
-        System.out.println("------------------------------------\n");
+        System.out.println("----------------------------------\n");
     } 
 }
