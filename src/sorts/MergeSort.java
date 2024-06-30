@@ -13,7 +13,7 @@ public class MergeSort
 
         Random r = new Random();
         
-        int size = r.nextInt(100);
+        int size = 100;
         int array[] = new int[size];
         for (int i = 0; i < size; i++)
         {

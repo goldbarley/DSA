@@ -13,11 +13,11 @@ public class Quicksort
 
         Random r = new Random();
         
-        int size = r.nextInt(100);
+        int size = 100;
         int array[] = new int[size];
         for (int i = 0; i < size; i++)
         {
-            array[i] = r.nextInt(100);
+            array[i] = r.nextInt(100) + 1;
         }
         System.out.println("Size of the array: " + size + "\n");
 
