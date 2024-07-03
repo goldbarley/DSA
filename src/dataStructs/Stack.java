@@ -12,60 +12,55 @@ public class Stack
         this.stack = new int[size];
         this.top = -1;
     }
-    public static void main(String[] args) 
-    {
-        // Call stack functions here
-    }
 
-    private  boolean isEmpty()
+    public  boolean isEmpty()
     {
         return top == -1;
-    }
+    }   
 
-    private boolean isFull()
+    public boolean isFull()
     {
         return top == size - 1;
     }
 
-    private void push(int n)
+    public void push(int n)
     {
         if (isFull())
         {
-            System.out.println("Stack Overflow error.");
-            System.exit(1);
+            throw new StackOverflowError("Stack overflow.");
         }
 
         stack[++top] = n;
     }
 
-    private void pop()
+    public int pop()
     {
         if (isEmpty())
         {
-            System.out.println("Stack Underflow error.");
-            System.exit(2);
+            throw new RuntimeException("Stack is empty.");
         }
 
+        int n = stack[top];
         stack[top--] = 0;
+
+        return n;
     }
 
-    private int peek()
+    public int peek()
     {
         if (isEmpty())
         {
-            System.out.println("Stack is empty.");
-            System.exit(3);
+            throw new RuntimeException("Stack is empty.");
         }
 
         return stack[top];
     }
 
-    private int getsize()
+    public int getsize()
     {
         if (isEmpty())
         {
-            System.out.println("Stack is empty.");
-            System.exit(4);
+            throw new RuntimeException("Stack is empty.");
         }
         return top + 1;
     }
