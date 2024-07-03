@@ -29,7 +29,7 @@ public class LinkedList
             list = n;
         else
         {
-            for (Node ptr = list; ptr!= null; ptr = ptr.getNext())
+            for (Node ptr = list; ptr != null; ptr = ptr.getNext())
             {
                 if (ptr.getNext() == null)
                 {
