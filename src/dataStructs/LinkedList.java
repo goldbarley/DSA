@@ -1,16 +1,13 @@
 package dataStructs;
 
-public class LinkedList
-{
+public class LinkedList {
     private Node list;
 
-    public LinkedList()
-    {
+    public LinkedList() {
         list = null;
     }
 
-    public void prepend(int value)
-    {
+    public void prepend(int value) {
         Node n = new Node();
 
         n.setInfo(value);
@@ -18,21 +15,17 @@ public class LinkedList
         n.setNext(list);
         list = n;
     }
-    
-    public void append(int value)
-    {
+
+    public void append(int value) {
         Node n = new Node();
 
         n.setInfo(value);
-        
+
         if (list == null)
             list = n;
-        else
-        {
-            for (Node ptr = list; ptr != null; ptr = ptr.getNext())
-            {
-                if (ptr.getNext() == null)
-                {
+        else {
+            for (Node ptr = list; ptr != null; ptr = ptr.getNext()) {
+                if (ptr.getNext() == null) {
                     ptr.setNext(n);
                     break;
                 }
@@ -40,8 +33,7 @@ public class LinkedList
         }
     }
 
-    public void addAfter(int index, int value)
-    {
+    public void insert(int index, int value) {
         if (index < 0)
             throw new IndexOutOfBoundsException();
 
@@ -50,15 +42,12 @@ public class LinkedList
 
         int i = 0;
 
-        for (Node ptr = list; ptr != null; ptr = ptr.getNext(), i++)
-        {
-            if (i == index)
-            {
+        for (Node ptr = list; ptr != null; ptr = ptr.getNext(), i++) {
+            if (i == index) {
                 Node nextNode = ptr.getNext();
                 if (nextNode == null)
                     ptr.setNext(n);
-                else
-                {
+                else {
                     n.setNext(nextNode);
                     ptr.setNext(n);
                 }
@@ -70,8 +59,7 @@ public class LinkedList
         throw new IndexOutOfBoundsException();
     }
 
-    public int get(int index)
-    {
+    public int get(int index) {
         if (list == null)
             throw new RuntimeException("List is empty.");
 
@@ -80,10 +68,8 @@ public class LinkedList
 
         int i = 0;
 
-        for (Node ptr = list; ptr != null; ptr = ptr.getNext(), i++)
-        {
-            if (i == index)
-            {
+        for (Node ptr = list; ptr != null; ptr = ptr.getNext(), i++) {
+            if (i == index) {
                 return ptr.getInfo();
             }
         }
@@ -91,16 +77,14 @@ public class LinkedList
         throw new IndexOutOfBoundsException();
     }
 
-    public int remove(int index)
-    {
+    public int remove(int index) {
         if (list == null)
             throw new RuntimeException("List is empty.");
 
         if (index < 0)
             throw new IndexOutOfBoundsException();
 
-        else if (index == 0)
-        {
+        else if (index == 0) {
             int value = list.getInfo();
             list = list.getNext();
 
@@ -109,14 +93,12 @@ public class LinkedList
 
         int i = 0;
         int value = 0;
-        
-        for (Node ptr = list; ptr != null; ptr = ptr.getNext(), i++)
-        {
-            if (i == index - 1)
-            {
+
+        for (Node ptr = list; ptr != null; ptr = ptr.getNext(), i++) {
+            if (i == index - 1) {
                 Node nodeToRemove = ptr.getNext();
                 value = nodeToRemove.getInfo();
-                
+
                 ptr.setNext(nodeToRemove.getNext());
 
                 return value;
@@ -126,27 +108,24 @@ public class LinkedList
         throw new IndexOutOfBoundsException();
     }
 
-    public int length()
-    {
+    public int length() {
         int length = 0;
         for (Node ptr = list; ptr != null; ptr = ptr.getNext(), length++);
 
         return length;
     }
 
-    public void reverse()
-    {
+    public void reverse() {
         Node previous = null;
         Node current = list;
 
-        while (current != null)
-        {
+        while (current != null) {
             Node next = current.getNext();
             current.setNext(previous);
 
             previous = current;
             current = next;
-            
+
         }
 
         list = previous;
