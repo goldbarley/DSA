@@ -21,8 +21,9 @@ public class LinkedList {
 
         n.setInfo(value);
 
-        if (list == null)
+        if (list == null) {
             list = n;
+        }
         else {
             for (Node ptr = list; ptr != null; ptr = ptr.getNext()) {
                 if (ptr.getNext() == null) {
@@ -34,8 +35,9 @@ public class LinkedList {
     }
 
     public void insert(int index, int value) {
-        if (index < 0)
+        if (index < 0) {
             throw new IndexOutOfBoundsException();
+        }
 
         Node n = new Node();
         n.setInfo(value);
@@ -45,9 +47,9 @@ public class LinkedList {
         for (Node ptr = list; ptr != null; ptr = ptr.getNext(), i++) {
             if (i == index) {
                 Node nextNode = ptr.getNext();
-                if (nextNode == null)
+                if (nextNode == null) {
                     ptr.setNext(n);
-                else {
+                } else {
                     n.setNext(nextNode);
                     ptr.setNext(n);
                 }
@@ -60,11 +62,13 @@ public class LinkedList {
     }
 
     public int get(int index) {
-        if (list == null)
+        if (list == null) {
             throw new RuntimeException("List is empty.");
+        }
 
-        if (index < 0)
+        if (index < 0) {
             throw new IndexOutOfBoundsException();
+        }
 
         int i = 0;
 
@@ -78,11 +82,13 @@ public class LinkedList {
     }
 
     public int remove(int index) {
-        if (list == null)
+        if (list == null) {
             throw new RuntimeException("List is empty.");
+        }
 
-        if (index < 0)
+        if (index < 0) {
             throw new IndexOutOfBoundsException();
+        }
 
         else if (index == 0) {
             int value = list.getInfo();
