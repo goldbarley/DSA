@@ -50,6 +50,7 @@ public class Stack {
         if (isEmpty()) {
             throw new RuntimeException("Stack is empty.");
         }
+        
         return top + 1;
     }
 }
