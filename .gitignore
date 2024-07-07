@@ -1,3 +1,8 @@
+# VS Code
 .vscode/
+
+# Bytecode
 bin/
+
+# For testing purposes
 Test.java
