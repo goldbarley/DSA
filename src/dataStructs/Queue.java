@@ -38,6 +38,7 @@ public class Queue {
             System.out.println("Queue is empty.");
             System.exit(2);
         }
+        
         int n = queue[front];
         front = (front + 1) % cap;
         size--;
