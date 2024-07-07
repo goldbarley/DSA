@@ -1,15 +1,15 @@
 package recursion;
 
-public class Strings
-{
+public class Strings {
+    
     public static String reverse(String s) {
         return s.length() == 1 ? s : reverse(s.substring(1)) + s.charAt(0);
     }
 
     public static boolean palindrome(String s) {
         int length = s.length();
-        if (length <= 1)
-        {
+
+        if (length <= 1) {
             return true;
         }
 
