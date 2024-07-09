@@ -88,4 +88,23 @@ public class CircularLinkedList extends LinkedList {
 
         return length;
     }
+
+    @Override
+    public void reverse() {
+        if (list == null) {
+            throw new RuntimeException("Cannot reverse an empty list.");
+        }
+
+        Node previous = null, current = list, next = null;
+
+        do {
+            next = current.getNext();
+            current.setNext(previous);
+            previous = current;
+            current = next;
+        } while (current != list);
+
+        list.setNext(previous);
+        list = previous;
+    }
 }

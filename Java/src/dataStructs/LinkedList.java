@@ -124,7 +124,7 @@ public class LinkedList {
         return length;
     }
 
-    private void reverse() {
+    public void reverse() {
         Node previous = null;
         Node current = list;
 
