@@ -1,31 +1,26 @@
 package dataStructs;
 
-public class LinkedList<E> {
-    private Node<E> list;
+public class LinkedList {
+    protected Node list;
 
     public LinkedList() {
         list = null;
     }
 
-    public void prepend(E value) {
-        Node<E> n = new Node<E>();
-
-        n.setInfo(value);
+    public void prepend(int value) {
+        Node n = new Node(value);
 
         n.setNext(list);
         list = n;
     }
 
-    public void append(E value) {
-        Node<E> n = new Node<E>();
-
-        n.setInfo(value);
-
+    public void append(int value) {
+        Node n = new Node(value);
         if (list == null) {
             list = n;
         }
         else {
-            for (Node<E> ptr = list; ptr != null; ptr = ptr.getNext()) {
+            for (Node ptr = list; ptr != null; ptr = ptr.getNext()) {
                 if (ptr.getNext() == null) {
                     ptr.setNext(n);
                     break;
@@ -34,19 +29,27 @@ public class LinkedList<E> {
         }
     }
 
-    public void insert(int index, E value) {
-        if (index < 0) {
-            throw new IndexOutOfBoundsException();
+    public void insert(int index, int value) {
+        if (list == null) {
+            prepend(value);
+            return;
         }
 
-        Node<E> n = new Node<E>();
+        if (index < 0) {
+            throw new IndexOutOfBoundsException();
+        } else if (index == 0) {
+            prepend(value);
+            return;
+        }
+
+        Node n = new Node();
         n.setInfo(value);
 
         int i = 0;
 
-        for (Node<E> ptr = list; ptr != null; ptr = ptr.getNext(), i++) {
+        for (Node ptr = list; ptr != null; ptr = ptr.getNext(), i++) {
             if (i == index) {
-                Node<E> nextNode = ptr.getNext();
+                Node nextNode = ptr.getNext();
                 if (nextNode == null) {
                     ptr.setNext(n);
                 } else {
@@ -61,7 +64,7 @@ public class LinkedList<E> {
         throw new IndexOutOfBoundsException();
     }
 
-    public E get(int index) {
+    public int get(int index) {
         if (list == null) {
             throw new RuntimeException("List is empty.");
         }
@@ -72,7 +75,7 @@ public class LinkedList<E> {
 
         int i = 0;
 
-        for (Node<E> ptr = list; ptr != null; ptr = ptr.getNext(), i++) {
+        for (Node ptr = list; ptr != null; ptr = ptr.getNext(), i++) {
             if (i == index) {
                 return ptr.getInfo();
             }
@@ -81,7 +84,7 @@ public class LinkedList<E> {
         throw new IndexOutOfBoundsException();
     }
 
-    public E remove(int index) {
+    public int remove(int index) {
         if (list == null) {
             throw new RuntimeException("List is empty.");
         }
@@ -91,18 +94,18 @@ public class LinkedList<E> {
         }
 
         else if (index == 0) {
-            E value = list.getInfo();
+            int value = list.getInfo();
             list = list.getNext();
 
             return value;
         }
 
         int i = 0;
-        E value = null;
+        int value = 0;
 
-        for (Node<E> ptr = list; ptr != null; ptr = ptr.getNext(), i++) {
+        for (Node ptr = list; ptr != null; ptr = ptr.getNext(), i++) {
             if (i == index - 1) {
-                Node<E> nodeToRemove = ptr.getNext();
+                Node nodeToRemove = ptr.getNext();
                 value = nodeToRemove.getInfo();
 
                 ptr.setNext(nodeToRemove.getNext());
@@ -116,17 +119,17 @@ public class LinkedList<E> {
 
     public int length() {
         int length = 0;
-        for (Node<E> ptr = list; ptr != null; ptr = ptr.getNext(), length++);
+        for (Node ptr = list; ptr != null; ptr = ptr.getNext(), length++);
 
         return length;
     }
 
-    public void reverse() {
-        Node<E> previous = null;
-        Node<E> current = list;
+    private void reverse() {
+        Node previous = null;
+        Node current = list;
 
         while (current != null) {
-            Node<E> next = current.getNext();
+            Node next = current.getNext();
             current.setNext(previous);
 
             previous = current;

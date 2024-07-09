@@ -1,32 +1,32 @@
 package dataStructs;
 
-public class Node<E> {
-    private E info;
-    private Node<E> next;
+public class Node {
+    private int info;
+    private Node next;
 
     public Node() {
-        info = null;
+        info = 0;
         next = null;
     }
 
-    public Node(E value) {
+    public Node(int value) {
         info = value;
         next = null;
     }
 
-    public void setInfo(E value) {
+    public void setInfo(int value) {
         info = value;
     }
 
-    public void setNext(Node<E> n) {
+    public void setNext(Node n) {
         next = n;
     }
 
-    public E getInfo() {
+    public int getInfo() {
         return info;
     }
 
-    public Node<E> getNext() {
+    public Node getNext() {
         return next;
     }
 }
