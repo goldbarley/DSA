@@ -1,7 +1,7 @@
 package dataStructs;
 
 public class LinkedList<E> {
-    private Node<E> list;
+    protected Node<E> list;
 
     public LinkedList() {
         list = null;
@@ -115,6 +115,9 @@ public class LinkedList<E> {
     }
 
     public int length() {
+        if (list == null) {
+            throw new RuntimeException("List is empty.");
+        }
         int length = 0;
         for (Node<E> ptr = list; ptr != null; ptr = ptr.getNext(), length++);
 
@@ -122,11 +125,9 @@ public class LinkedList<E> {
     }
 
     public void reverse() {
-        Node<E> previous = null;
-        Node<E> current = list;
+        Node<E> previous = null, current = list, next = list.getNext();
 
         while (current != null) {
-            Node<E> next = current.getNext();
             current.setNext(previous);
 
             previous = current;
