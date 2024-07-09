@@ -1,7 +1,7 @@
 package dataStructs;
 
-public class Queue {
-    public int[] queue;
+public class Queue<E> {
+    public E[] queue;
     public int front;
     public int end;
     public int size;
@@ -9,7 +9,9 @@ public class Queue {
 
     public Queue(int cap) {
         this.cap = cap;
-        queue = new int[cap];
+        @SuppressWarnings("unchecked")
+        E[] queue = (E[]) new Object[cap];
+        this.queue = queue;
         front = 0;
         end = -1;
         size = 0;
@@ -23,7 +25,7 @@ public class Queue {
         return size == 0;
     }
 
-    public void enqueue(int n) {
+    public void enqueue(E n) {
         if (isFull()) {
             throw new RuntimeException("Queue is full.");
         }
@@ -33,20 +35,20 @@ public class Queue {
         size++;
     }
 
-    public int dequeue() {
+    public E dequeue() {
         if (isEmpty()) {
             System.out.println("Queue is empty.");
             System.exit(2);
         }
         
-        int n = queue[front];
+        E n = queue[front];
         front = (front + 1) % cap;
         size--;
 
         return n;
     }
 
-    public int peek() {
+    public E peek() {
         if (isEmpty()) {
             throw new RuntimeException("Queue is empty.");
         }
