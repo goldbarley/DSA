@@ -1,14 +1,14 @@
 package dataStructs;
 
-public class LinkedList {
-    private Node list;
+public class LinkedList<E> {
+    private Node<E> list;
 
     public LinkedList() {
         list = null;
     }
 
-    public void prepend(int value) {
-        Node n = new Node();
+    public void prepend(E value) {
+        Node<E> n = new Node<E>();
 
         n.setInfo(value);
 
@@ -16,8 +16,8 @@ public class LinkedList {
         list = n;
     }
 
-    public void append(int value) {
-        Node n = new Node();
+    public void append(E value) {
+        Node<E> n = new Node<E>();
 
         n.setInfo(value);
 
@@ -25,7 +25,7 @@ public class LinkedList {
             list = n;
         }
         else {
-            for (Node ptr = list; ptr != null; ptr = ptr.getNext()) {
+            for (Node<E> ptr = list; ptr != null; ptr = ptr.getNext()) {
                 if (ptr.getNext() == null) {
                     ptr.setNext(n);
                     break;
@@ -34,19 +34,19 @@ public class LinkedList {
         }
     }
 
-    public void insert(int index, int value) {
+    public void insert(int index, E value) {
         if (index < 0) {
             throw new IndexOutOfBoundsException();
         }
 
-        Node n = new Node();
+        Node<E> n = new Node<E>();
         n.setInfo(value);
 
         int i = 0;
 
-        for (Node ptr = list; ptr != null; ptr = ptr.getNext(), i++) {
+        for (Node<E> ptr = list; ptr != null; ptr = ptr.getNext(), i++) {
             if (i == index) {
-                Node nextNode = ptr.getNext();
+                Node<E> nextNode = ptr.getNext();
                 if (nextNode == null) {
                     ptr.setNext(n);
                 } else {
@@ -61,7 +61,7 @@ public class LinkedList {
         throw new IndexOutOfBoundsException();
     }
 
-    public int get(int index) {
+    public E get(int index) {
         if (list == null) {
             throw new RuntimeException("List is empty.");
         }
@@ -72,7 +72,7 @@ public class LinkedList {
 
         int i = 0;
 
-        for (Node ptr = list; ptr != null; ptr = ptr.getNext(), i++) {
+        for (Node<E> ptr = list; ptr != null; ptr = ptr.getNext(), i++) {
             if (i == index) {
                 return ptr.getInfo();
             }
@@ -81,7 +81,7 @@ public class LinkedList {
         throw new IndexOutOfBoundsException();
     }
 
-    public int remove(int index) {
+    public E remove(int index) {
         if (list == null) {
             throw new RuntimeException("List is empty.");
         }
@@ -91,18 +91,18 @@ public class LinkedList {
         }
 
         else if (index == 0) {
-            int value = list.getInfo();
+            E value = list.getInfo();
             list = list.getNext();
 
             return value;
         }
 
         int i = 0;
-        int value = 0;
+        E value = null;
 
-        for (Node ptr = list; ptr != null; ptr = ptr.getNext(), i++) {
+        for (Node<E> ptr = list; ptr != null; ptr = ptr.getNext(), i++) {
             if (i == index - 1) {
-                Node nodeToRemove = ptr.getNext();
+                Node<E> nodeToRemove = ptr.getNext();
                 value = nodeToRemove.getInfo();
 
                 ptr.setNext(nodeToRemove.getNext());
@@ -116,17 +116,17 @@ public class LinkedList {
 
     public int length() {
         int length = 0;
-        for (Node ptr = list; ptr != null; ptr = ptr.getNext(), length++);
+        for (Node<E> ptr = list; ptr != null; ptr = ptr.getNext(), length++);
 
         return length;
     }
 
     public void reverse() {
-        Node previous = null;
-        Node current = list;
+        Node<E> previous = null;
+        Node<E> current = list;
 
         while (current != null) {
-            Node next = current.getNext();
+            Node<E> next = current.getNext();
             current.setNext(previous);
 
             previous = current;
