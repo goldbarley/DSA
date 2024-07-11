@@ -1,20 +1,20 @@
 package dataStructs;
 
-public class CircularLinkedList extends LinkedList {
+public class CircularLinkedList<E> extends LinkedList<E> {
 
     public CircularLinkedList() {
         list = null;
     }
 
     @Override
-    public void prepend(int value) {
-        Node n = new Node(value);
+    public void prepend(E value) {
+        Node<E> n = new Node<>(value);
         if (list == null) {
             list = n;
             n.setNext(list);
             
         } else {
-            Node ptr = list;
+            Node<E> ptr = list;
             for (; ptr.getNext() != list; ptr = ptr.getNext());
 
             ptr.setNext(n);
@@ -24,13 +24,13 @@ public class CircularLinkedList extends LinkedList {
     }
 
     @Override
-    public void append(int value) {
-        Node n = new Node(value);
+    public void append(E value) {
+        Node<E> n = new Node<>(value);
         if (list == null) {
             list = n;
             n.setNext(list);
         } else {
-            Node ptr = list;
+            Node<E> ptr = list;
             for (; ptr.getNext() != list; ptr = ptr.getNext());
 
             ptr.setNext(n);
@@ -39,7 +39,7 @@ public class CircularLinkedList extends LinkedList {
     }
 
     @Override
-    public void insert(int index, int value) {
+    public void insert(int index, E value) {
         if (index < 0) {
             throw new IndexOutOfBoundsException();
         } else if (index == 0) {
@@ -47,7 +47,7 @@ public class CircularLinkedList extends LinkedList {
             return;
         }
 
-        Node n = new Node(value);
+        Node<E> n = new Node<>(value);
 
         if (list == null) {
             if (index != 0) {
@@ -57,9 +57,10 @@ public class CircularLinkedList extends LinkedList {
             n.setNext(list);    
         } else {
             int currentIndex = 0;
-            for (Node ptr = list; ptr.getNext() != list; ptr = ptr.getNext(), currentIndex++) {
+            for (Node<E> ptr = list; ptr.getNext() != list; ptr = ptr.getNext(), currentIndex++) {
                 if (currentIndex == index) {
-                    Node nextNode = ptr.getNext();
+
+                    Node<E> nextNode = ptr.getNext();
                     if (nextNode == list) {
                         ptr.setNext(n);
                         n.setNext(list);
@@ -84,7 +85,7 @@ public class CircularLinkedList extends LinkedList {
         }
         
         int length = 1;
-        for (Node ptr = list; ptr.getNext() != list; ptr = ptr.getNext(), length++);
+        for (Node<E> ptr = list; ptr.getNext() != list; ptr = ptr.getNext(), length++);
 
         return length;
     }
@@ -95,7 +96,7 @@ public class CircularLinkedList extends LinkedList {
             throw new RuntimeException("Cannot reverse an empty list.");
         }
 
-        Node previous = null, current = list, next = null;
+        Node<E> previous = null, current = list, next = null;
 
         do {
             next = current.getNext();

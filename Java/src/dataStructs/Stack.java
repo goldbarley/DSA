@@ -1,13 +1,15 @@
 package dataStructs;
 
-public class Stack {
+public class Stack<E> {
     int size;
-    int[] stack;
+    E[] stack;
     int top;
 
     public Stack(int size) {
         this.size = size;
-        this.stack = new int[size];
+        @SuppressWarnings("unchecked")
+        E[] stack = (E[]) new Object[size];
+        this.stack = stack;
         this.top = -1;
     }
 
@@ -19,7 +21,7 @@ public class Stack {
         return top == size - 1;
     }
 
-    public void push(int n) {
+    public void push(E n) {
         if (isFull()) {
             throw new StackOverflowError("Stack overflow.");
         }
@@ -27,18 +29,18 @@ public class Stack {
         stack[++top] = n;
     }
 
-    public int pop() {
+    public E pop() {
         if (isEmpty()) {
             throw new RuntimeException("Stack is empty.");
         }
 
-        int n = stack[top];
-        stack[top--] = 0;
+        E n = stack[top];
+        stack[top--] = null;
 
         return n;
     }
 
-    public int peek() {
+    public E peek() {
         if (isEmpty()) {
             throw new RuntimeException("Stack is empty.");
         }

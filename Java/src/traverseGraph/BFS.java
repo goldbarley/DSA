@@ -10,7 +10,7 @@ public class BFS {
 
     private static void bfs(int src, int[][] matrix, boolean[] visited) {
         int nodes = matrix.length;
-        Queue queue = new Queue(nodes);
+        Queue<Integer> queue = new Queue<>(nodes);
 
         queue.enqueue(src);
         visited[src] = true;
