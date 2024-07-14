@@ -2,6 +2,7 @@ package dataStructs;
 
 public class LinkedList<E> {
     protected Node<E> list;
+    private int size = 0;
 
     public LinkedList() {
         list = null;
@@ -14,51 +15,53 @@ public class LinkedList<E> {
 
         n.setNext(list);
         list = n;
+
+        size++;
     }
 
     public void append(E value) {
-        Node<E> n = new Node<E>();
+        Node<E> newNode = new Node<E>(value, null);
 
-        n.setInfo(value);
+        newNode.setInfo(value);
 
         if (list == null) {
-            list = n;
+            list = newNode;
         }
         else {
-            for (Node<E> ptr = list; ptr != null; ptr = ptr.getNext()) {
-                if (ptr.getNext() == null) {
-                    ptr.setNext(n);
-                    break;
-                }
-            }
+            Node<E> ptr = list;
+            while (ptr.getNext() != null) {
+                ptr = ptr.getNext();
+            } 
+
+            ptr.setNext(newNode);
         }
+
+        size++;
     }
 
     public void insert(int index, E value) {
-        if (index < 0) {
-            throw new IndexOutOfBoundsException();
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Cannot access index " + index + " for size " + size);
         }
 
-        Node<E> n = new Node<E>();
-        n.setInfo(value);
+        if (index == 0) {
+            prepend(value);
+            return;
+        }
 
-        int i = 0;
+        int currentIndex = 0;
+        for (Node<E> ptr = list; ptr != null; ptr = ptr.getNext(), currentIndex++) {
+            if (currentIndex == index - 1) {
+                Node<E> newNode = new Node<>(value, ptr.getNext());
+                ptr.setNext(newNode);
 
-        for (Node<E> ptr = list; ptr != null; ptr = ptr.getNext(), i++) {
-            if (i == index) {
-                Node<E> nextNode = ptr.getNext();
-                if (nextNode == null) {
-                    ptr.setNext(n);
-                } else {
-                    n.setNext(nextNode);
-                    ptr.setNext(n);
-                }
-
+                size++;
+                
                 return;
             }
         }
 
-        throw new IndexOutOfBoundsException();
+        throw new IndexOutOfBoundsException("Cannot access index " + index + " for size " + size);
     }
 
     public E get(int index) {
@@ -67,18 +70,18 @@ public class LinkedList<E> {
         }
 
         if (index < 0) {
-            throw new IndexOutOfBoundsException();
+            throw new IndexOutOfBoundsException("Cannot access index " + index + " for size " + size);
         }
 
-        int i = 0;
+        int currentIndex = 0;
 
-        for (Node<E> ptr = list; ptr != null; ptr = ptr.getNext(), i++) {
-            if (i == index) {
+        for (Node<E> ptr = list; ptr != null; ptr = ptr.getNext(), currentIndex++) {
+            if (currentIndex == index) {
                 return ptr.getInfo();
             }
         }
 
-        throw new IndexOutOfBoundsException();
+        throw new IndexOutOfBoundsException("Cannot access index " + index + " for size " + size);
     }
 
     public E remove(int index) {
@@ -87,41 +90,39 @@ public class LinkedList<E> {
         }
 
         if (index < 0) {
-            throw new IndexOutOfBoundsException();
+            throw new IndexOutOfBoundsException("Cannot access index " + index + " for size " + size);
         }
 
         else if (index == 0) {
             E value = list.getInfo();
             list = list.getNext();
 
+            size--;
+
             return value;
         }
 
-        int i = 0;
+        int currentIndex = 0;
         E value = null;
 
-        for (Node<E> ptr = list; ptr != null; ptr = ptr.getNext(), i++) {
-            if (i == index - 1) {
+        for (Node<E> ptr = list; ptr != null; ptr = ptr.getNext(), currentIndex++) {
+            if (currentIndex == index - 1) {
                 Node<E> nodeToRemove = ptr.getNext();
                 value = nodeToRemove.getInfo();
 
                 ptr.setNext(nodeToRemove.getNext());
 
+                size--;
+
                 return value;
             }
         }
 
-        throw new IndexOutOfBoundsException();
+        throw new IndexOutOfBoundsException("Cannot access index " + index + " for size " + size);
     }
 
-    public int length() {
-        if (list == null) {
-            throw new RuntimeException("List is empty.");
-        }
-        int length = 0;
-        for (Node<E> ptr = list; ptr != null; ptr = ptr.getNext(), length++);
-
-        return length;
+    public int size() {
+        return size;
     }
 
     public void reverse() {
