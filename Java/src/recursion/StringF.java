@@ -1,6 +1,6 @@
 package recursion;
 
-public class Strings {
+public class StringF {
     
     public static String reverse(String s) {
         return s.length() == 1 ? s : reverse(s.substring(1)) + s.charAt(0);

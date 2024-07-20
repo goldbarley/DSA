@@ -1,7 +1,5 @@
 package recursion;
 
-import java.util.NoSuchElementException;
-
 public class ArrayF {
     public static void reverse(int[] array) {
         reverse(array, 0, array.length - 1);
@@ -41,23 +39,32 @@ public class ArrayF {
 
     public static int kthLargestElement(int k, int[] array)
     {
-        k--;
-        if (array.length < 2 || k > array.length) {
-            throw new NoSuchElementException();
-        }
+        sorts.Quicksort.quicksort(array);
 
-        if (k == array.length) {
-            return Math.min(array[0], array[1]); 
-        }
-
-        return Math.max(array[k], kthLargestElement(k + 1, array));
+        return array[array.length - k];
     }
 
-    public static int sumElements(int[] array) {
-        if (array.length == 1) {
-            return array[0];
+    public static int index(final int element, final int[] array) {
+        return index(element, array, 0);
+    }
+
+    private static int index(final int element, final int[] array, int index) {
+        if (index == array.length - 1) {
+            return element == array[index] ? index : -1;
+        }
+        
+        return element == array[index] ? index : index(element, array, index + 1);
+    }
+
+    public static boolean in(final int[] array, final int element) {
+        return in(array, element, 0);
+    }
+
+    private static boolean in(final int[] array, final int element, int index) {
+        if (index == array.length - 1) {
+            return element == array[index];
         }
 
-        
+        return element == array[index] ? true : in(array, element, index + 1);
     }
 }

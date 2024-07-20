@@ -1,6 +1,6 @@
 package recursion;
 
-public class Integers {  
+public class IntegerF {  
     public static int reverse(int n) {
         return n < 10 ? n : (n % 10) * (int) Math.pow(10, (int) Math.log10(n)) + reverse(n / 10);
     }
@@ -26,5 +26,7 @@ public class Integers {
         return n == 0 ? 1L : (long) n * factorial(n - 1);
     }
 
-    
+    public static int toBinary(int n) {
+        return n == 0 || n == 1 ? n : (n % 2) + 10 * toBinary(n / 2);
+    }
 }

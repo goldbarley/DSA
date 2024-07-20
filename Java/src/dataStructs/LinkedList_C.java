@@ -1,40 +1,40 @@
 package dataStructs;
 
-public class CircularLinkedList<E> extends LinkedList<E> {
+public class LinkedList_C<E> extends LinkedList_S<E> {
 
-    public CircularLinkedList() {
+    public LinkedList_C() {
         list = null;
     }
 
     @Override
     public void prepend(E value) {
-        Node<E> n = new Node<>(value);
+        final Node<E> newNode = new Node<>(value);
         if (list == null) {
-            list = n;
-            n.setNext(list);
+            list = newNode;
+            newNode.setNext(list);
             
         } else {
-            Node<E> ptr = list;
-            for (; ptr.getNext() != list; ptr = ptr.getNext());
+            Node<E> ptr;
+            for (ptr = list; ptr.getNext() != list; ptr = ptr.getNext());
 
-            ptr.setNext(n);
-            n.setNext(list);
-            list = n;
+            ptr.setNext(newNode);
+            newNode.setNext(list);
+            list = newNode;
         }
     }
 
     @Override
     public void append(E value) {
-        Node<E> n = new Node<>(value);
+        final Node<E> newNode = new Node<>(value);
         if (list == null) {
-            list = n;
-            n.setNext(list);
+            list = newNode;
+            newNode.setNext(list);
         } else {
-            Node<E> ptr = list;
-            for (; ptr.getNext() != list; ptr = ptr.getNext());
+            Node<E> ptr;
+            for (ptr = list; ptr.getNext() != list; ptr = ptr.getNext());
 
-            ptr.setNext(n);
-            n.setNext(list);
+            ptr.setNext(newNode);
+            newNode.setNext(list);
         }
     }
 
@@ -47,14 +47,14 @@ public class CircularLinkedList<E> extends LinkedList<E> {
             return;
         }
 
-        Node<E> n = new Node<>(value);
+        final Node<E> newNode = new Node<>(value);
 
         if (list == null) {
             if (index != 0) {
                 throw new IndexOutOfBoundsException();
             }
-            list = n;
-            n.setNext(list);    
+            list = newNode;
+            newNode.setNext(list);    
         } else {
             int currentIndex = 0;
             for (Node<E> ptr = list; ptr.getNext() != list; ptr = ptr.getNext(), currentIndex++) {
@@ -62,14 +62,14 @@ public class CircularLinkedList<E> extends LinkedList<E> {
 
                     Node<E> nextNode = ptr.getNext();
                     if (nextNode == list) {
-                        ptr.setNext(n);
-                        n.setNext(list);
+                        ptr.setNext(newNode);
+                        newNode.setNext(list);
 
                         return;
                     }
 
-                    ptr.setNext(n);
-                    n.setNext(nextNode);
+                    ptr.setNext(newNode);
+                    newNode.setNext(nextNode);
 
                     return;
                 }

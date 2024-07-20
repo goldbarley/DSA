@@ -2,11 +2,11 @@ package dataStructs;
 
 import java.util.NoSuchElementException;
 
-public class LinkedList<E> {
+public class LinkedList_S<E> {
     protected Node<E> list;
     private int size = 0;
 
-    public LinkedList() {
+    public LinkedList_S() {
         list = null;
     }
 
@@ -61,7 +61,7 @@ public class LinkedList<E> {
 
     public E get(int index) {
         if (list == null) {
-            throw new RuntimeException("List is empty.");
+            throw new NoSuchElementException("List is empty.");
         }
 
         if (index < 0) {
