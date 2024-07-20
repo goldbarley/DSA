@@ -1,12 +1,11 @@
 package dataStructs;
 
-import java.util.NoSuchElementException;
-public class DoublyLinkedList<E> {
+public class LinkedList_D<E> {
     private Node<E> list = null;
     private Node<E> endOfList = null;
     private int size = 0;
 
-    public DoublyLinkedList() {
+    public LinkedList_D() {
         this.list = null;
         this.endOfList = null;
         this.size = 0;
