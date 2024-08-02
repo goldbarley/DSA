@@ -1,61 +1,85 @@
 package dataStructs;
 
-public class Queue<E> {
-    public E[] queue;
-    public int front;
-    public int end;
-    public int size;
-    public int cap;
+public class Queue<T> {
+    private T[] queue;
+    private int size;
+    private int front;
+    private int rear;
 
-    public Queue(int cap) {
-        this.cap = cap;
+    public Queue(int size) {
+        this.size = size;
         @SuppressWarnings("unchecked")
-        E[] queue = (E[]) new Object[cap];
+        T[] queue = (T[]) new Object[this.size];
         this.queue = queue;
-        front = 0;
-        end = -1;
-        size = 0;
+        this.front = -1;
+        this.rear = -1;
     }
 
-    public boolean isFull() {
-        return size == cap;
+    public boolean empty() {
+        return front == -1 && rear == -1;
     }
 
-    public boolean isEmpty() {
-        return size == 0;
+    public boolean full() {
+        return (rear + 1) % size == front;
     }
 
-    public void enqueue(E n) {
-        if (isFull()) {
-            throw new RuntimeException("Queue is full.");
+    public void enqueue(T value) {
+        if (full()) {
+            System.out.println("Queue is full!");
+        }
+        else if (empty()) {
+            front = rear = 0;
+            queue[rear] = value;
+        } else {
+            rear = (rear + 1) % size;
+            queue[rear] = value;
+        }
+    }
+
+    public T dequeue() {
+        if (empty()) {
+            System.out.println("Queue is empty!");
+            return null;
         }
 
-        end = (end + 1) % cap;
-        queue[end] = n;
-        size++;
-    }
+        T value = queue[front];
+        queue[front] = null;
 
-    public E dequeue() {
-        if (isEmpty()) {
-            System.out.println("Queue is empty.");
-            System.exit(2);
+        if (front == rear) {
+            front = rear = -1;
+        } else {
+            front = (front + 1) % size;
         }
-        
-        E n = queue[front];
-        front = (front + 1) % cap;
-        size--;
 
-        return n;
+        return value;
     }
 
-    public E peek() {
-        if (isEmpty()) {
-            throw new RuntimeException("Queue is empty.");
+    public int size() {
+        if (empty()) {
+            return 0;
+        } else if (full()) {
+            return this.size;
+        } else if (rear >= front) {
+            return rear - front + 1;
+        } 
+        return (this.size - front) + (rear + 1);
+    }
+    
+    public void print() {
+        if (empty()) {
+            System.out.println("Queue is empty!");
         }
-        return queue[front];
-    }
 
-    public int length() {
-        return size;
+        System.out.print("[");
+        int i = front;
+        do {
+            i = (i + 1) % size;
+            if (i == (front + 1) % size) {
+                System.out.print(queue[front]);
+            } else {
+                System.out.print(", " + queue[i]);
+            }
+        } while (i != rear);
+        System.out.print("]\n");
     }
 }

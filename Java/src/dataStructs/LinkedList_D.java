@@ -150,4 +150,22 @@ public class LinkedList_D<E> {
         endOfList = list;
         list = prevNode;
     }
+
+    public void cirswap() {
+        if (list == null) {
+            throw new RuntimeException("List is empty.");
+        }
+
+        E tmp = null;
+        Node<E> next = list.getNext();
+        if (next == null) {
+            return;
+        }
+
+        for (Node<E> ptr = next; ptr != null; ptr = ptr.getNext()) {
+            tmp = next.getInfo();
+            next.setInfo(list.getInfo());
+            list.setInfo(tmp);
+        }
+    }
 }

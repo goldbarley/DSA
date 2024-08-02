@@ -13,16 +13,16 @@ public class Stack<E> {
         this.top = -1;
     }
 
-    public boolean isEmpty() {
+    public boolean empty() {
         return top == -1;
     }
 
-    public boolean isFull() {
+    public boolean full() {
         return top == size - 1;
     }
 
     public void push(E n) {
-        if (isFull()) {
+        if (full()) {
             throw new StackOverflowError("Stack overflow.");
         }
 
@@ -30,7 +30,7 @@ public class Stack<E> {
     }
 
     public E pop() {
-        if (isEmpty()) {
+        if (empty()) {
             throw new RuntimeException("Stack is empty.");
         }
 
@@ -41,7 +41,7 @@ public class Stack<E> {
     }
 
     public E peek() {
-        if (isEmpty()) {
+        if (empty()) {
             throw new RuntimeException("Stack is empty.");
         }
 
@@ -49,7 +49,7 @@ public class Stack<E> {
     }
 
     public int getsize() {
-        if (isEmpty()) {
+        if (empty()) {
             throw new RuntimeException("Stack is empty.");
         }
         

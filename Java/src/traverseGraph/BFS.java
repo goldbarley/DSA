@@ -15,7 +15,7 @@ public class BFS {
         queue.enqueue(src);
         visited[src] = true;
 
-        while (queue.length() > 0) {
+        while (queue.size() > 0) {
             src = queue.dequeue();
             System.out.print(src + " ");
 
