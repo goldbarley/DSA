@@ -2,7 +2,9 @@ package dataStructs;
 
 public class LinkedList_C<E> extends LinkedList_S<E> {
 
+    private int size = 0;
     public LinkedList_C() {
+        this.size = 0;
         list = null;
     }
 
@@ -21,6 +23,8 @@ public class LinkedList_C<E> extends LinkedList_S<E> {
             newNode.setNext(list);
             list = newNode;
         }
+
+        size++;
     }
 
     @Override
@@ -36,6 +40,8 @@ public class LinkedList_C<E> extends LinkedList_S<E> {
             ptr.setNext(newNode);
             newNode.setNext(list);
         }
+
+        size++;
     }
 
     @Override
@@ -64,13 +70,11 @@ public class LinkedList_C<E> extends LinkedList_S<E> {
                     if (nextNode == list) {
                         ptr.setNext(newNode);
                         newNode.setNext(list);
-
-                        return;
+                    } else {
+                        ptr.setNext(newNode);
+                        newNode.setNext(nextNode);
                     }
-
-                    ptr.setNext(newNode);
-                    newNode.setNext(nextNode);
-
+                    size++;
                     return;
                 }
             }
@@ -80,14 +84,7 @@ public class LinkedList_C<E> extends LinkedList_S<E> {
 
     @Override
     public int size() {
-        if (list == null) {
-            throw new RuntimeException("List is empty.");
-        }
-        
-        int length = 1;
-        for (Node<E> ptr = list; ptr.getNext() != list; ptr = ptr.getNext(), length++);
-
-        return length;
+        return size;
     }
 
     @Override
